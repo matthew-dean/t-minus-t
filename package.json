@@ -1,0 +1,16 @@
+{
+  "name": "t-minus-t",
+  "version": "0.0.1",
+  "private": true,
+  "description": "TypeScript Minus TypeScript - Write TypeScript, store JSDoc",
+  "packageManager": "pnpm@10.0.0",
+  "scripts": {
+    "build": "pnpm -r run build",
+    "test": "pnpm -r run test",
+    "lint": "pnpm -r run lint",
+    "clean": "pnpm -r run clean"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  }
+}

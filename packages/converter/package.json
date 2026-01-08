@@ -1,0 +1,25 @@
+{
+  "name": "ts-jsdoc-sync",
+  "version": "0.0.1",
+  "description": "TypeScript ↔ JSDoc conversion utilities",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run --reporter=verbose --no-coverage",
+    "test:watch": "vitest --reporter=verbose",
+    "test:coverage": "vitest run --coverage --reporter=verbose",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "ast-types": "~0.14.2",
+    "recast": "~0.23.11",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@vitest/coverage-v8": "^2.0.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.0.0"
+  }
+}

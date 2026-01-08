@@ -1,0 +1,14 @@
+.vscode/**
+.vscode-test/**
+src/**
+tsconfig.json
+.gitignore
+.nvmrc
+*.md
+!README.md
+node_modules/**
+packages/**
+pnpm-workspace.yaml
+pnpm-lock.yaml
+oxlint.json
+
