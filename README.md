@@ -1,5 +1,7 @@
 # TypeScript Minus TypeScript
 
+**Status:** Early development
+
 **What if you could write TypeScript, but never had to compile it, and it was shippable immediately?** What if it was still type-checked?
 
 **TypeScript Minus TypeScript** is a VSCode/Cursor extension that lets you write TypeScript syntax in `.js` files. It stores your code as JavaScript with JSDoc comments, giving you TypeScript's developer experience and type checking while keeping your files as plain, immediately-runnable JavaScript.
