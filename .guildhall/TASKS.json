@@ -7,7 +7,7 @@
       "title": "What commands should I run to verify the converter packag...",
       "description": "What commands should I run to verify the converter package tests, based on this project's repo config?",
       "domain": "converter-core",
-      "projectPath": "/Users/matthew/git/oss/t-minus-t",
+      "projectPath": ".",
       "status": "exploring",
       "priority": "normal",
       "dependsOn": [],
