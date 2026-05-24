@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "updatedAt": "2026-05-24T05:26:46.637Z",
+  "activeTaskIds": [],
+  "archivedTaskIds": [
+    "task-workspace-import",
+    "task-meta-intake",
+    "task-003"
+  ],
+  "archivedCount": 3
+}

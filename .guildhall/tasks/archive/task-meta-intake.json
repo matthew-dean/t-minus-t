@@ -1,0 +1,83 @@
+{
+  "id": "task-meta-intake",
+  "title": "Bootstrap coordinators for this workspace",
+  "description": "Interview the user about the codebase, then draft coordinator definitions for guildhall.yaml.",
+  "domain": "_meta",
+  "projectPath": ".",
+  "status": "done",
+  "priority": "critical",
+  "spec": "Deterministic fallback draft from saved meta-intake answers. Review before merging.\n\n```yaml\ncoordinators:\n  - id: converter-core\n    domain: converter-core\n    name: Converter Core\n    mandate: >-\n      Protect the TypeScript-to-JSDoc conversion engine so edits round-trip correctly between the\n      in-editor TypeScript view and saved JavaScript.\n    concerns:\n      - id: round-trip-correctness\n        description: >-\n          Type annotations, comments, generics, and supported TypeScript syntax survive conversion\n          without semantic drift.\n        reviewQuestions:\n          - Does this preserve runtime JavaScript while improving the TypeScript editing view?\n          - Are edge cases covered by converter tests?\n    autonomousDecisions:\n      - Approve small parser or formatting fixes covered by converter tests.\n    escalationTriggers:\n      - A change cannot round-trip without losing user-authored code or comments.\n  - id: extension-ui\n    domain: extension-ui\n    name: Editor Extension Experience\n    path: packages/extension\n    mandate: >-\n      Protect the VS Code/Cursor command flow, virtual document behavior, save lifecycle, and\n      user-facing extension ergonomics.\n    concerns:\n      - id: editor-workflow\n        description: Opening, editing, and saving JavaScript as TypeScript feels predictable inside the editor.\n        reviewQuestions:\n          - >-\n            Can a user tell whether they are editing the virtual TypeScript view or the saved\n            JavaScript file?\n          - Does the save path avoid data loss and stale editor state?\n    autonomousDecisions:\n      - Approve command labels and small editor-state fixes that do not change conversion semantics.\n    escalationTriggers:\n      - A change alters save behavior, file ownership, or editor trust boundaries.\n  - id: dts-generation\n    domain: dts-generation\n    name: Declaration File Generation\n    mandate: >-\n      Protect optional .d.ts generation so generated declarations match saved JavaScript and never\n      surprise users by default.\n    concerns:\n      - id: declaration-safety\n        description: Declaration output is opt-in, reproducible, and aligned with the converter output.\n        reviewQuestions:\n          - Is declaration generation still off by default unless the user opts in?\n          - Do generated declarations match the saved JavaScript API?\n    autonomousDecisions:\n      - Approve narrow declaration formatting fixes covered by tests.\n    escalationTriggers:\n      - A change writes new files automatically or changes default generation behavior.\n  - id: testing-qa\n    domain: testing-qa\n    name: Testing and Quality\n    mandate: >-\n      Protect the project gates and test coverage for converter behavior, extension workflow, and\n      release readiness.\n    concerns:\n      - id: gate-coverage\n        description: Build, lint, and tests remain meaningful signals for project health.\n        reviewQuestions:\n          - Does this add or update tests for changed behavior?\n          - Are failing gates treated as work to fix rather than ignored?\n    autonomousDecisions:\n      - Approve test-only changes that clarify existing behavior.\n    escalationTriggers:\n      - A gate is removed, weakened, or marked optional without a clear reason.\n  - id: docs\n    domain: docs\n    name: Documentation\n    mandate: >-\n      Keep README, usage guidance, and developer docs aligned with how the extension and converter\n      actually work.\n    concerns:\n      - id: docs-match-product\n        description: Documentation explains the real user workflow and current feature support.\n        reviewQuestions:\n          - Would a new user understand what the extension does and how to try it?\n          - Do examples match supported converter behavior?\n    autonomousDecisions:\n      - Approve wording fixes that clarify current behavior without changing product promises.\n    escalationTriggers:\n      - Docs promise unsupported TypeScript features or a release channel that does not exist yet.\n```\n\n```yaml\nbootstrap:\n  commands:\n    - pnpm install\n  successGates:\n    - pnpm run build\n    - pnpm run test\n    - pnpm run lint\n  timeoutMs: 300000\n```\n",
+  "acceptanceCriteria": [],
+  "openQuestions": [
+    {
+      "id": "q-20260425063217-1f34b88c",
+      "askedBy": "spec-agent",
+      "askedAt": "2026-04-25T06:32:17.501Z",
+      "answeredAt": "2026-04-25T06:34:08.947Z",
+      "answer": "converter-core, extension-ui, dts-generation, testing-qa, docs",
+      "kind": "choice",
+      "prompt": "Pick all that apply — these will become your coordinator domains.",
+      "choices": [
+        "converter-core",
+        "extension-ui",
+        "dts-generation",
+        "release-publishing",
+        "testing-qa",
+        "docs"
+      ]
+    },
+    {
+      "id": "q-20260425063240-c5d9b003",
+      "askedBy": "spec-agent",
+      "askedAt": "2026-04-25T06:32:40.084Z",
+      "answeredAt": "2026-04-25T06:34:08.947Z",
+      "answer": "Yes, that’s right.",
+      "kind": "confirm",
+      "restatement": "Confirm or correct the zones below. I inferred these from the monorepo structure."
+    },
+    {
+      "id": "q-20260425063749-b419318e",
+      "askedBy": "spec-agent",
+      "askedAt": "2026-04-25T06:37:49.345Z",
+      "answeredAt": "2026-04-25T06:41:52.863Z",
+      "answer": "Maintain the TS↔JSDoc conversion as a standalone, reusable library",
+      "kind": "choice",
+      "prompt": "**converter-core** mandate — what should this coordinator protect? Pick one:",
+      "choices": [
+        "Guarantee correct round-trip conversion between TS syntax and JSDoc",
+        "Keep the converter fast and correct for all supported TS features",
+        "Maintain the TS↔JSDoc conversion as a standalone, reusable library",
+        "Something else (I'll type it)"
+      ]
+    },
+    {
+      "id": "q-20260425063837-928561ca",
+      "askedBy": "spec-agent",
+      "askedAt": "2026-04-25T06:38:37.003Z",
+      "answeredAt": "2026-04-25T06:41:52.863Z",
+      "answer": "Keep README and docs in sync with the actual codebase",
+      "kind": "choice",
+      "prompt": "**docs** mandate — what should this coordinator protect? Pick one:",
+      "choices": [
+        "Keep README and docs in sync with the actual codebase",
+        "Maintain developer onboarding docs and contribution guidelines",
+        "Own all project documentation (README, API docs, changelog)",
+        "Something else (I'll type it)"
+      ]
+    }
+  ],
+  "outOfScope": [],
+  "dependsOn": [],
+  "notes": [],
+  "gateResults": [],
+  "reviewVerdicts": [],
+  "adjudications": [],
+  "revisionCount": 0,
+  "remediationAttempts": 0,
+  "escalations": [],
+  "agentIssues": [],
+  "origination": "system",
+  "createdAt": "2026-04-25T06:30:04.300Z",
+  "updatedAt": "2026-04-26T18:02:16.516Z",
+  "completedAt": "2026-04-25T15:18:42.813Z"
+}

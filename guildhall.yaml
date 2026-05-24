@@ -1,0 +1,122 @@
+name: t-minus-t
+id: t-minus-t
+coordinators:
+  - id: converter-core
+    name: Converter Core
+    domain: converter-core
+    mandate: >-
+      Protect the TypeScript-to-JSDoc conversion engine so edits round-trip correctly between the in-editor TypeScript
+      view and saved JavaScript.
+    concerns:
+      - id: round-trip-correctness
+        description: >-
+          Type annotations, comments, generics, and supported TypeScript syntax survive conversion without semantic
+          drift.
+        reviewQuestions:
+          - Does this preserve runtime JavaScript while improving the TypeScript editing view?
+          - Are edge cases covered by converter tests?
+    autonomousDecisions:
+      - Approve small parser or formatting fixes covered by converter tests.
+    escalationTriggers:
+      - A change cannot round-trip without losing user-authored code or comments.
+  - id: extension-ui
+    name: Editor Extension Experience
+    domain: extension-ui
+    path: packages/extension
+    mandate: >-
+      Protect the VS Code/Cursor command flow, virtual document behavior, save lifecycle, and user-facing extension
+      ergonomics.
+    concerns:
+      - id: editor-workflow
+        description: Opening, editing, and saving JavaScript as TypeScript feels predictable inside the editor.
+        reviewQuestions:
+          - Can a user tell whether they are editing the virtual TypeScript view or the saved JavaScript file?
+          - Does the save path avoid data loss and stale editor state?
+    autonomousDecisions:
+      - Approve command labels and small editor-state fixes that do not change conversion semantics.
+    escalationTriggers:
+      - A change alters save behavior, file ownership, or editor trust boundaries.
+  - id: dts-generation
+    name: Declaration File Generation
+    domain: dts-generation
+    mandate: >-
+      Protect optional .d.ts generation so generated declarations match saved JavaScript and never surprise users by
+      default.
+    concerns:
+      - id: declaration-safety
+        description: Declaration output is opt-in, reproducible, and aligned with the converter output.
+        reviewQuestions:
+          - Is declaration generation still off by default unless the user opts in?
+          - Do generated declarations match the saved JavaScript API?
+    autonomousDecisions:
+      - Approve narrow declaration formatting fixes covered by tests.
+    escalationTriggers:
+      - A change writes new files automatically or changes default generation behavior.
+  - id: testing-qa
+    name: Testing and Quality
+    domain: testing-qa
+    mandate: Protect the project gates and test coverage for converter behavior, extension workflow, and release readiness.
+    concerns:
+      - id: gate-coverage
+        description: Build, lint, and tests remain meaningful signals for project health.
+        reviewQuestions:
+          - Does this add or update tests for changed behavior?
+          - Are failing gates treated as work to fix rather than ignored?
+    autonomousDecisions:
+      - Approve test-only changes that clarify existing behavior.
+    escalationTriggers:
+      - A gate is removed, weakened, or marked optional without a clear reason.
+  - id: docs
+    name: Documentation
+    domain: docs
+    mandate: Keep README, usage guidance, and developer docs aligned with how the extension and converter actually work.
+    concerns:
+      - id: docs-match-product
+        description: Documentation explains the real user workflow and current feature support.
+        reviewQuestions:
+          - Would a new user understand what the extension does and how to try it?
+          - Do examples match supported converter behavior?
+    autonomousDecisions:
+      - Approve wording fixes that clarify current behavior without changing product promises.
+    escalationTriggers:
+      - Docs promise unsupported TypeScript features or a release channel that does not exist yet.
+maxRevisions: 3
+heartbeatInterval: 5
+ignore:
+  - node_modules
+  - dist
+  - .git
+  - coverage
+tags: []
+bootstrap:
+  commands:
+    - pnpm install
+  successGates:
+    - pnpm run build
+    - pnpm run test
+    - pnpm run lint
+  timeoutMs: 300000
+  provenance:
+    establishedBy: spec-agent-intake
+    establishedAt: '2026-04-25T15:18:42.813Z'
+    tried: []
+  verifiedAt: '2026-04-25T15:18:44.009Z'
+  packageManager: pnpm
+  install:
+    command: pnpm install
+    status: ok
+  gates:
+    lint:
+      command: pnpm lint
+      available: false
+      unavailableReason: runner exited 1 on --help
+    typecheck:
+      command: ''
+      available: false
+      unavailableReason: no typecheck script and no tsconfig.json
+    build:
+      command: pnpm build
+      available: true
+    test:
+      command: pnpm test
+      available: true

@@ -1,0 +1,1 @@
+TypeScript Minus TypeScript is an early-development VS Code/Cursor extension for editing JavaScript files through a TypeScript-like view while saving plain JavaScript plus JSDoc. The near-term goal is reliable round-trip conversion, a clear editor workflow, optional declaration generation, and enough tests and docs to make the extension safe to try.

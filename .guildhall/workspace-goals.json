@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "recordedAt": "2026-04-25T15:42:36.116Z",
+  "goals": [
+    {
+      "id": "goal-typescript-minus-typescript",
+      "title": "TypeScript Minus TypeScript",
+      "rationale": "**Status:** Early development"
+    },
+    {
+      "id": "goal-typescript-syntax-in-js-files---write-let-x-number-5-and-it",
+      "title": "✨ **TypeScript syntax in `.js` files** - Write `let x: number = 5` and it becomes JSDoc",
+      "rationale": ""
+    },
+    {
+      "id": "goal-live-conversion---see-your-changes-reflected-in-real-time-wi",
+      "title": "🔄 **Live conversion** - See your changes reflected in real-time (with smart debouncing)",
+      "rationale": ""
+    },
+    {
+      "id": "goal-smart-comment-handling---preserves-your-meaningful-comments",
+      "title": "💬 **Smart comment handling** - Preserves your meaningful comments, converts type-only annotations",
+      "rationale": ""
+    },
+    {
+      "id": "goal-auto-generate-d-ts-files---optionally-generate-declaration-f",
+      "title": "📝 **Auto-generate `.d.ts` files** - Optionally generate declaration files on save (off by default)",
+      "rationale": ""
+    },
+    {
+      "id": "goal-respects-your-formatting---maintains-your-indentation-and-co",
+      "title": "🎨 **Respects your formatting** - Maintains your indentation and code style",
+      "rationale": ""
+    }
+  ]
+}
