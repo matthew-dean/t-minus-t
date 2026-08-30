@@ -19,7 +19,7 @@ VSCode/Cursor extension that lets you write TypeScript syntax in `.js` files, st
 ## Usage
 
 1. Open any `.js` file in VSCode/Cursor
-2. Run the command `Typescript Minus TypeScript: Open as TypeScript` (or use the command palette)
+2. Run the command `TypeScript Minus TypeScript: Open as TypeScript` (or use the command palette)
 3. Edit the file as if it were TypeScript
 4. Save - your changes are automatically converted to JSDoc
 

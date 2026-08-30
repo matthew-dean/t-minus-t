@@ -46,7 +46,7 @@ The extension will be available in the VSCode marketplace. Install it like any o
 ### Basic Usage
 
 1. Open any `.js` file in VSCode/Cursor
-2. Run the command `Typescript Minus TypeScript: Open as TypeScript` (or use the command palette)
+2. Run the command `TypeScript Minus TypeScript: Open as TypeScript` (or use the command palette)
 3. Edit the file as if it were TypeScript
 4. Save - your changes are automatically converted to JSDoc
 
@@ -107,8 +107,8 @@ pnpm install
 # Build all packages
 pnpm run build
 
-# Run tests (converter package)
-cd packages/converter && pnpm test
+# Run tests (converter and extension packages)
+pnpm test
 
 # Watch for changes (extension)
 cd packages/extension && pnpm run watch
@@ -146,4 +146,3 @@ MIT License - See [LICENSE](LICENSE) file for details.
 - Built with [TypeScript](https://www.typescriptlang.org/) and [VSCode Extension API](https://code.visualstudio.com/api)
 - JSDoc support based on [TypeScript's JSDoc Reference](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html)
 - Name inspired by [Garfield Minus Garfield](https://garfieldminusgarfield.net/)
-
