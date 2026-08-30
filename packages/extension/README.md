@@ -61,7 +61,7 @@ pnpm run lint:fix
 
 This extension uses:
 - `@t-minus-t/converter` - Core conversion logic (separate package)
-- VSCode `TextDocumentContentProvider` API - For virtual document views
+- VSCode `CustomTextEditorProvider` API - For the custom TypeScript editor view
 - TypeScript Compiler API - For `.d.ts` generation
 
 ## Project Structure
@@ -70,7 +70,7 @@ This extension uses:
 packages/extension/
   src/
     extension.ts          # Main entry point
-    contentProvider.ts    # TextDocumentContentProvider
+    customEditorProvider.ts  # CustomTextEditorProvider
     dtsGenerator.ts      # .d.ts file generation
   dist/                   # Compiled output
 ```

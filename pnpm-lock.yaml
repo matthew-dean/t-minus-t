@@ -52,6 +52,9 @@ importers:
       '@types/vscode':
         specifier: ^1.85.0
         version: 1.107.0
+      vitest:
+        specifier: ^2.0.0
+        version: 2.1.9(@types/node@20.19.27)
 
 packages:
 

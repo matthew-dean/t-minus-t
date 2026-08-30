@@ -24,6 +24,12 @@
         }
       }
     },
+    "commands": [
+      {
+        "command": "tMinusTS.openAsTypeScript",
+        "title": "TypeScript Minus TypeScript: Open as TypeScript"
+      }
+    ],
     "customEditors": [
       {
         "viewType": "tMinusTS.typescriptEditor",
@@ -41,6 +47,7 @@
     "vscode:prepublish": "pnpm run build",
     "build": "tsc -p ./",
     "watch": "tsc -watch -p ./",
+    "test": "vitest run --reporter=verbose --no-coverage",
     "lint": "oxlint src",
     "lint:fix": "oxlint --fix src",
     "clean": "rm -rf dist"
@@ -52,7 +59,8 @@
   "devDependencies": {
     "@types/node": "^20.0.0",
     "@types/vscode": "^1.85.0",
-    "typescript": "^5.6.0"
+    "typescript": "^5.6.0",
+    "vitest": "^2.0.0"
   },
   "packageManager": "pnpm@10.0.0"
 }

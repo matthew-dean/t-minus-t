@@ -28,7 +28,26 @@ export function activate(context: vscode.ExtensionContext) {
     }
   });
 
-  context.subscriptions.push(providerRegistration);
+  // Register the 'Open as TypeScript' command
+  const openAsTypeScriptCommand = vscode.commands.registerCommand('tMinusTS.openAsTypeScript', () => {
+    const activeEditor = vscode.window.activeTextEditor;
+    if (!activeEditor) {
+      vscode.window.showErrorMessage('No active editor found. Open a .js file first.');
+      return;
+    }
+
+    const document = activeEditor.document;
+    if (document.languageId !== 'javascript' || document.uri.scheme !== 'file') {
+      vscode.window.showErrorMessage(
+        'Unsupported file type. Open as TypeScript works with JavaScript (.js) files.'
+      );
+      return;
+    }
+
+    vscode.commands.executeCommand('vscode.openWith', document.uri, 'tMinusTS.typescriptEditor');
+  });
+
+  context.subscriptions.push(providerRegistration, openAsTypeScriptCommand);
 }
 
 export function deactivate() {
