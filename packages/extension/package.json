@@ -30,6 +30,22 @@
         "title": "TypeScript Minus TypeScript: Open as TypeScript"
       }
     ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "tMinusTS.openAsTypeScript",
+          "when": "resourceLangId == javascript",
+          "group": "navigation"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "command": "tMinusTS.openAsTypeScript",
+          "when": "resourceLangId == javascript",
+          "group": "navigation"
+        }
+      ]
+    },
     "customEditors": [
       {
         "viewType": "tMinusTS.typescriptEditor",

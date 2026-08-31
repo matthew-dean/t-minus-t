@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 // Mock state shared between the mock module and tests
@@ -27,6 +29,22 @@ vi.mock('vscode', () => ({
     getConfiguration: mockGetConfiguration,
   },
 }));
+
+describe('extension manifest', () => {
+  const manifest = JSON.parse(
+    readFileSync(resolve(__dirname, '../package.json'), 'utf8'),
+  ) as { contributes: { menus?: Record<string, Array<{ command: string; when: string; group: string }>> } };
+
+  for (const menu of ['explorer/context', 'editor/title/context']) {
+    it(`shows Open as TypeScript for JavaScript files in ${menu}`, () => {
+      expect(manifest.contributes.menus?.[menu]).toContainEqual({
+        command: 'tMinusTS.openAsTypeScript',
+        when: 'resourceLangId == javascript',
+        group: 'navigation',
+      });
+    });
+  }
+});
 
 describe('extension', () => {
   beforeEach(() => {
